@@ -7,7 +7,7 @@ import java.util.List;
 public class Calculator {
 
     public static final List<String> listOfOperators = Arrays.asList("+", "-", "*",
-            "/");
+            "/", "$last");
 
     public static Double calculate(String num1, String num2, String oper) {
 

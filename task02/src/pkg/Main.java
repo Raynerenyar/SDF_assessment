@@ -1,7 +1,5 @@
 package pkg;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -22,21 +20,16 @@ public class Main {
                 break;
                 // System.exit(1);
             }
+
+            // replaces terms with saved value
+            line = line.replace("$last", Double.toString($last));
+            String[] splitLine = line.split(" ");
+
             // verify inputs
             Boolean isInputValid = Calculator.isInputValid(line);
             if (!isInputValid) {
                 System.out.println("\nInvalid input\nPlease input: \n<number> <operator> <number>\n");
                 continue;
-            }
-
-            // split line into separate terms
-            String[] splitLine = line.split(" ");
-
-            // check if user use saved variable
-            // replaces terms with saved value
-            if (line.contains("$last")) {
-                List<String> list = Arrays.asList(splitLine);
-                splitLine[list.indexOf("$last")] = Double.toString($last);
             }
             String num1 = splitLine[0];
             String oper = splitLine[1];
