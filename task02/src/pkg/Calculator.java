@@ -1,6 +1,6 @@
 package pkg;
 
-import java.math.BigDecimal;
+// import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,12 +10,6 @@ public class Calculator {
             "/");
 
     public static Double calculate(String num1, String num2, String oper) {
-
-        // if (num1.equalsIgnoreCase("$last")) {
-        // num1 = last;
-        // } else if (num2.equalsIgnoreCase("$last")) {
-        // num2 = last;
-        // }
 
         Double doubleNum1 = Double.parseDouble(num1);
         Double doubleNum2 = Double.parseDouble(num2);
@@ -75,6 +69,7 @@ public class Calculator {
 
     public static Boolean isInputValid(String line) {
         String[] terms = line.split(" ");
+
         // check length first to prevent out of bound exception
         if (!(terms.length == 3)) {
             return false;
@@ -84,8 +79,9 @@ public class Calculator {
             return false;
         }
         try {
-            Double doubleNum1 = Double.parseDouble(terms[0]);
-            Double doubleNum2 = Double.parseDouble(terms[2]);
+            // return true if terms are parsable
+            Double.parseDouble(terms[0]);
+            Double.parseDouble(terms[2]);
             return true;
         } catch (Exception e) {
             return false;
