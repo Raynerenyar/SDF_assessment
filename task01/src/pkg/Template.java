@@ -38,12 +38,6 @@ public class Template {
                             line = line.replace("<<" + keyword + ">>", personDetails.get(keyword));
                         }
                     } // for
-                      // if (line.contains("\\n")) {
-                      // String[] splitLine = line.split("\\n");
-                      // line.getChars(0, 0, null, 0);
-                      // System.out.println(splitLine[0]);
-                      // System.out.println(splitLine[1]);
-                      // }
                     System.out.printf("%s\n", line);
                 } // while
                 count++;
