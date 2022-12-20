@@ -18,7 +18,6 @@ public class Main {
             if (line.equalsIgnoreCase("exit")) {
                 System.out.println("Bye bye");
                 break;
-                // System.exit(1);
             }
 
             // replaces terms with saved value
@@ -46,14 +45,11 @@ public class Main {
                     continue;
                 }
                 if (Math.abs($last) % 1 > 0) {
-                    // last$last = String.format("%f\n", $last);
+
                     System.out.println($last);
                 } else {
-                    // Integer int$last = $last.intValue();
+
                     Long long$last = $last.longValue();
-                    // last$last = String.format("%d", $last);
-                    // System.out.printf("%,d\n", intResult);
-                    // System.out.printf("%,f\n", $last);
                     System.out.printf("%d\n", long$last);
 
                 }
