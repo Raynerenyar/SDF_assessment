@@ -3,8 +3,6 @@ package pkg;
 import java.util.List;
 import java.util.Map;
 
-import pkg.CSV;
-
 public class Main {
     public static void main(String[] args) {
         String csvFilename = args[0];

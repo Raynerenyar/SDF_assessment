@@ -5,13 +5,13 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Template {
 
     public static void fillIn(List<Map<String, String>> listOfPeople, String templateFileName) {
         Reader r;
         try {
-            String line;
 
             // for each name, write to output file with details of the person
             Integer count = 1;
@@ -27,22 +27,21 @@ public class Template {
                  * For each keyword, look for the corresponding placeholder in each line of the
                  * template
                  */
-                while ((line = bfr.readLine()) != null) {
+                String fullText = bfr.lines()
+                        .map(x -> {
+                            for (String keyword : personDetails.keySet()) {
+                                x = x.replace("<<" + keyword + ">>", personDetails.get(keyword));
+                                x = x.replace("\\n", "\n"); // cannot use split as it uses regex on "\\n"
+                            }
+                            return x;
+                        })
+                        .collect(Collectors.joining("\n"));
 
-                    for (String keyword : personDetails.keySet()) {
-
-                        // find placeholder in line
-                        if (line.contains("<<" + keyword + ">>")) {
-
-                            // replace placeholder with the correct detail
-                            line = line.replace("<<" + keyword + ">>", personDetails.get(keyword));
-                        }
-                    } // for
-                    System.out.printf("%s\n", line);
-                } // while
                 count++;
+                System.out.println(fullText);
                 System.out.println("====================================================================");
                 System.out.printf("\n");
+                bfr.close();
 
             } // for
 

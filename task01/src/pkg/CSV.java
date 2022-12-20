@@ -10,62 +10,48 @@ import java.util.Map;
 
 public class CSV {
 
-    // private final String FIRSTNAME;
-    // private final String LASTNAME;
-    // private final String STREET;
-    // private final Integer YEARS;
-
-    // public CSV(String firstName, String lastName, String street, Integer years) {
-    // FIRSTNAME = firstName;
-    // LASTNAME = lastName;
-    // STREET = street;
-    // YEARS = years;
-    // }
-
     public static List<Map<String, String>> csvReader(String fileName) {
-        Reader r;
 
-        Map<String, Map<String, String>> peopleList = new HashMap<String, Map<String, String>>();
         List<Map<String, String>> listOfPeople = new LinkedList<>();
-        // List<CSV> peopleList = new LinkedList<>();
+
         try {
-            r = new FileReader(fileName);
+            Reader r = new FileReader(fileName);
             BufferedReader bfr = new BufferedReader(r);
             String line = bfr.readLine();
+
             // get headers
             String[] headers = line.split(",");
             String[] contents = new String[headers.length];
-            // String line;
+
+            /*
+             * List<Map<String, String>>
+             * 
+             * List
+             * ┃
+             * ┣━━ Map1 ━━┳ Header1: value1
+             * ┃          ┣ Header2: value2
+             * ┃          ┗ Header3: value3
+             * ┃
+             * ┣━━ Map2 ━━┳ Header1: value1
+             * ┃          ┣ Header2: value2
+             * ┃          ┗ Header3: value3
+             * ┃
+             * ┗━━ Map3 ━━┳ Header1: value1
+             *            ┣ Header2: value2
+             *            ┗ Header3: value3
+             */
             while ((line = bfr.readLine()) != null) {
                 contents = line.split(",");
                 Map<String, String> people = new HashMap<String, String>();
                 for (int i = 0; i < contents.length; i++) {
                     people.put(headers[i], contents[i]);
                 }
-                // group map by first item in headers. arbitary for any csv file
-                // peopleList.put(people.get(headers[0]), people);
                 listOfPeople.add(people);
             }
+            bfr.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listOfPeople;
     }
-
-    // public String getFirstName() {
-    // return FIRSTNAME;
-    // }
-
-    // public String getLastName() {
-    // return LASTNAME;
-    // }
-
-    // public String getStreet() {
-    // return STREET;
-    // }
-
-    // public Integer getYears() {
-    // return YEARS;
-    // }
-
 }
