@@ -30,8 +30,8 @@ public class Template {
                 String fullText = bfr.lines()
                         .map(x -> {
                             for (String keyword : personDetails.keySet()) {
-                                x = x.replace("<<" + keyword + ">>", personDetails.get(keyword));
-                                x = x.replace("\\n", "\n"); // cannot use split as it uses regex on "\\n"
+                                x = x.replaceAll("<<" + keyword + ">>", personDetails.get(keyword));
+                                x = x.replaceAll("\\n", "\n"); // cannot use split as it uses regex on "\\n"
                             }
                             return x;
                         })
